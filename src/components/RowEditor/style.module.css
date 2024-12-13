@@ -1,0 +1,63 @@
+.drawerContent {
+  padding: 20px;
+  flex: 1;
+  overflow-y: auto;
+  h3 {
+    margin: 0 0 20px 0;
+    font-size: 18px;
+    color: var(--text-color);
+  }
+}
+
+.propertiesForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  label {
+    font-size: 14px;
+    color: var(--text-color);
+    input,
+    select {
+      padding: 8px;
+      border: 1px solid var(--text-color);
+      border-radius: 4px;
+    }
+  }
+}
+
+.cssEditor {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid var(--text-color);
+  border-radius: 4px;
+  background: var(--background-color);
+  resize: vertical;
+}
+
+.deleteBtn,
+.saveBtn {
+  width: 100%;
+  padding: 10px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.deleteBtn {
+  background-color: var(--red-color);
+}
+
+.saveBtn {
+  background-color: var(--primary-color);
+}

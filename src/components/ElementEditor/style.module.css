@@ -1,0 +1,67 @@
+.elementEditor {
+  padding: 20px;
+}
+
+.propertySection {
+  margin-bottom: 24px;
+
+  h3 {
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: #333;
+  }
+
+  label {
+    display: block;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 6px;
+  }
+
+  input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-bottom: 12px;
+  }
+}
+
+.cssEditor {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid var(--text-color);
+  border-radius: 4px;
+  background: var(--background-color);
+  resize: vertical;
+}
+
+.buttonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-direction: column;
+
+  .deleteBtn,
+  .saveBtn {
+    width: 100%;
+    padding: 10px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  .deleteBtn {
+    background-color: var(--red-color);
+  }
+
+  .saveBtn {
+    background-color: var(--primary-color);
+  }
+}
