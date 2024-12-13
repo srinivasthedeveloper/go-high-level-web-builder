@@ -86,25 +86,10 @@
   object-fit: cover;
 }
 
-/* .canvas-button {
-    width: auto;
-    padding: 8px 16px;
-    background: #007bff;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  } */
-
 .canvasHeading {
   margin: 0;
   padding: 10px;
   font-size: 24px;
-}
-
-/* Drag and drop styles */
-.canvasRow.dragging {
-  opacity: 0.5;
 }
 
 .canvasRow.dragOver {
