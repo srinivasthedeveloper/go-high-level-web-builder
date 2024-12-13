@@ -1,5 +1,5 @@
 import React from "react";
-import "./style.css";
+import styles from "./style.module.css";
 import { ElementEditor } from "../../components/ElementEditor";
 import { RowEditor } from "../../components/RowEditor/index.jsx";
 
@@ -39,46 +39,66 @@ function RightDrawer({
           />
         );
       case "column-select":
+        const columns = [1, 2, 3, 4];
         return (
-          <div className="drawer-content">
+          <div className={styles.drawerContent}>
             <h3>Select Layout</h3>
-            <div className="column-options">
-              <button className="layout-btn" onClick={() => onSelectColumns(1)}>
-                <div className="layout-preview one-col"></div>
-                <span>1 Column</span>
-              </button>
-              <button className="layout-btn" onClick={() => onSelectColumns(2)}>
-                <div className="layout-preview two-col"></div>
-                <span>2 Columns</span>
-              </button>
+            <div className={styles.columnOptions}>
+              {columns.map((column) => (
+                <button
+                  className={styles.layoutBtn}
+                  onClick={() => onSelectColumns(column)}
+                >
+                  <div className={`${styles.layoutPreview}`}>
+                    {[...Array(column)].map((_, index) => (
+                      <div key={index} className={styles.column}></div>
+                    ))}
+                  </div>
+                  <span>{column} Column</span>
+                </button>
+              ))}
             </div>
           </div>
         );
 
       case "elements":
         return (
-          <div className="drawer-content">
+          <div className={styles.drawerContent}>
             <h3>Add Element</h3>
-            <div className="element-options">
+            <div className={styles.elementOptions}>
               <button
-                className="element-btn"
+                className={styles.elementBtn}
                 onClick={() => onSelectElement("heading")}
               >
-                <span className="element-icon">H</span>
+                <span className={styles.elementIcon}>H</span>
                 <span>Heading</span>
               </button>
               <button
-                className="element-btn"
-                onClick={() => onSelectElement("button")}
+                className={styles.elementBtn}
+                onClick={() => onSelectElement("paragraph")}
               >
-                <span className="element-icon">B</span>
-                <span>Button</span>
+                <span className={styles.elementIcon}>P</span>
+                <span>Paragraph</span>
               </button>
               <button
-                className="element-btn"
+                className={styles.elementBtn}
+                onClick={() => onSelectElement("list")}
+              >
+                <span className={styles.elementIcon}>L</span>
+                <span>List</span>
+              </button>
+              <button
+                className={styles.elementBtn}
+                onClick={() => onSelectElement("button")}
+              >
+                <span className={styles.elementIcon}>L</span>
+                <span>Link</span>
+              </button>
+              <button
+                className={styles.elementBtn}
                 onClick={() => onSelectElement("image")}
               >
-                <span className="element-icon">I</span>
+                <span className={styles.elementIcon}>I</span>
                 <span>Image</span>
               </button>
             </div>
@@ -91,9 +111,9 @@ function RightDrawer({
   };
 
   return (
-    <div className={`right-drawer ${show ? "show" : ""}`}>
-      <div className="drawer-header">
-        <button className="close-btn" onClick={onClose}>
+    <div className={`${styles.rightDrawer} ${show ? styles.show : ""}`}>
+      <div className={styles.drawerHeader}>
+        <button className={styles.closeBtn} onClick={onClose}>
           ×
         </button>
       </div>

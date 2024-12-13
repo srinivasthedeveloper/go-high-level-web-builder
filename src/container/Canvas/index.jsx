@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./style.module.css";
-import { RenderUiComponents } from "../../components/RenderElement";
+import { RenderUiComponents } from "../../components/RenderUiComponents";
 import { useDnD } from "../../hooks/useDnD";
 
 function Canvas({

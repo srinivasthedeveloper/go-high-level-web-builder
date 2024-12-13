@@ -1,5 +1,4 @@
-/* components/RightDrawer/RightDrawer.css */
-.right-drawer {
+.rightDrawer {
   position: fixed;
   right: -320px;
   top: 0;
@@ -13,18 +12,18 @@
   flex-direction: column;
 }
 
-.right-drawer.show {
+.rightDrawer.show {
   right: 0;
 }
 
-.drawer-header {
+.drawerHeader {
   padding: 16px;
   border-bottom: 1px solid #eee;
   display: flex;
   justify-content: flex-end;
 }
 
-.close-btn {
+.closeBtn {
   background: none;
   border: none;
   font-size: 24px;
@@ -32,26 +31,25 @@
   color: #666;
 }
 
-.drawer-content {
+.drawerContent {
   padding: 20px;
   flex: 1;
   overflow-y: auto;
 }
 
-.drawer-content h3 {
+.drawerContent h3 {
   margin: 0 0 20px 0;
   font-size: 18px;
   color: #333;
 }
 
-/* Column selection styles */
-.column-options {
+.columnOptions {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.layout-btn {
+.layoutBtn {
   border: 1px solid #ddd;
   padding: 16px;
   border-radius: 4px;
@@ -62,40 +60,30 @@
   gap: 16px;
 }
 
-.layout-preview {
+.layoutPreview {
   width: 60px;
   height: 40px;
   border: 1px solid #ccc;
   border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  gap: 2px;
+  .column {
+    width: 100%;
+    height: 100%;
+    background: #f0f0f0;
+  }
 }
 
-.one-col {
-  background: #f0f0f0;
-}
-
-.two-col {
-  background: #f0f0f0;
-  position: relative;
-}
-
-.two-col::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  height: 100%;
-  width: 1px;
-  background: #ccc;
-}
-
-/* Element selection styles */
-.element-options {
+.elementOptions {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
-.element-btn {
+.elementBtn {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -106,7 +94,7 @@
   cursor: pointer;
 }
 
-.element-icon {
+.elementIcon {
   width: 32px;
   height: 32px;
   display: flex;
@@ -117,24 +105,22 @@
   font-weight: bold;
 }
 
-/* Properties form styles */
-
-.padding-inputs,
-.margin-inputs {
+.paddingInputs,
+.marginInputs {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
 }
 
-.padding-inputs input,
-.margin-inputs input {
+.paddingInputs input,
+.marginInputs input {
   width: 100%;
   padding: 8px;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
 
-.delete-row-btn {
+.deleteRowBtn {
   margin-top: 20px;
   padding: 10px;
   background-color: #ff4444;
@@ -145,14 +131,6 @@
   width: 100%;
 }
 
-.delete-row-btn:hover {
+.deleteRowBtn:hover {
   background-color: #cc0000;
-}
-
-input[type="color"] {
-  width: 100%;
-  height: 40px;
-  padding: 2px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
 }

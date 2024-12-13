@@ -4,7 +4,6 @@ import { cssToStyleObject, parseStyles } from "../../utils/styleParser";
 
 function ElementEditor({ element, onUpdateElement, onDeleteElement }) {
   const [inputValue, setInputValue] = useState({});
-
   useEffect(() => {
     if (element.rowId) {
       parseStyles(element.styles);
@@ -12,6 +11,8 @@ function ElementEditor({ element, onUpdateElement, onDeleteElement }) {
         text: element.text || "",
         src: element.src || "",
         alt: element.alt || "",
+        tag: element.tag || "h1",
+        items: element.items || [],
         styles: parseStyles(element.styles) || null,
       });
     }
@@ -19,7 +20,10 @@ function ElementEditor({ element, onUpdateElement, onDeleteElement }) {
 
   return (
     <div className={styles.elementEditor}>
-      {RenderTypeBasedContent()}
+      <div className={styles.propertySection}>
+        <h3>Update Content</h3>
+        {RenderTypeBasedContent()}
+      </div>
 
       <div className={styles.propertySection}>
         <h3>Custom CSS</h3>
@@ -44,10 +48,9 @@ function ElementEditor({ element, onUpdateElement, onDeleteElement }) {
   );
 
   function RenderTypeBasedContent() {
-    return (
-      <div className={styles.propertySection}>
-        <h3>Update Content</h3>
-        {element.type === "image" ? (
+    switch (element.type) {
+      case "image":
+        return (
           <>
             <label>Image URL</label>
             <input
@@ -68,7 +71,26 @@ function ElementEditor({ element, onUpdateElement, onDeleteElement }) {
               placeholder="Enter alt text..."
             />
           </>
-        ) : element?.type === "button" ? (
+        );
+      case "list":
+        return (
+          <>
+            <label>Enter List Items</label>
+            <input
+              type="text"
+              value={inputValue?.items?.join(";")}
+              onChange={(e) => {
+                setInputValue({
+                  ...inputValue,
+                  items: e.target.value.split(";"),
+                });
+              }}
+              placeholder="Enter list items..."
+            />
+          </>
+        );
+      case "button":
+        return (
           <>
             <label>Enter Url</label>
             <input
@@ -89,8 +111,23 @@ function ElementEditor({ element, onUpdateElement, onDeleteElement }) {
               placeholder="Enter text..."
             />
           </>
-        ) : (
+        );
+      default:
+        return (
           <>
+            {element.type === "heading" ? (
+              <select
+                value={inputValue.tag}
+                onChange={(e) => {
+                  setInputValue({ ...inputValue, tag: e.target.value });
+                }}
+              >
+                <option value="h1">H1</option>
+                <option value="h2">H2</option>
+                <option value="h3">H3</option>
+                <option value="h4">H4</option>
+              </select>
+            ) : null}
             <label>Text Content</label>
             <input
               type="text"
@@ -101,9 +138,8 @@ function ElementEditor({ element, onUpdateElement, onDeleteElement }) {
               placeholder="Enter text..."
             />
           </>
-        )}
-      </div>
-    );
+        );
+    }
   }
 
   function RenderFooter() {
