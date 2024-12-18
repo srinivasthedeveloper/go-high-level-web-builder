@@ -151,7 +151,11 @@ function App() {
             setDrawerType("column-select");
             setShowDrawer(true);
           }}
-          onElementClick={(element) => {
+          onElementClick={(element, isDelete = false) => {
+            if (isDelete) {
+              handleDeleteElement(element);
+              return;
+            }
             setSelectedElement(element);
             setDrawerType("element-properties");
             setShowDrawer(true);

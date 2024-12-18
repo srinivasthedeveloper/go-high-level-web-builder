@@ -1,4 +1,38 @@
+import { useState } from "react";
+import styles from "./styles.module.css";
+
 const RenderUiComponents = ({ element, onElementClick }) => {
+  const [showTools, setShowTools] = useState(false);
+
+  return (
+    <div
+      onMouseOver={() => {
+        setShowTools(true);
+      }}
+      onMouseLeave={() => {
+        setShowTools(false);
+      }}
+      className={styles.outerContainer}
+    >
+      {showTools ? (
+        <div className={styles.tools}>
+          <button onClick={() => onElementClick(element)}>Edit</button>
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onElementClick(element, true);
+            }}
+          >
+            Delete
+          </button>
+        </div>
+      ) : null}
+      <RenderUiElements element={element} onElementClick={onElementClick} />
+    </div>
+  );
+};
+
+const RenderUiElements = ({ element, onElementClick }) => {
   switch (element.type) {
     case "image":
       return (
@@ -6,14 +40,12 @@ const RenderUiComponents = ({ element, onElementClick }) => {
           src={element.src}
           alt={element.alt}
           style={element.styles}
-          className="canvas-image"
           onClick={() => onElementClick(element)}
         />
       );
     case "button":
       return (
         <a
-          className="canvas-button"
           onClick={() => onElementClick(element)}
           target="_blank"
           href={element.src}
@@ -42,21 +74,13 @@ const RenderUiComponents = ({ element, onElementClick }) => {
       }
     case "paragraph":
       return (
-        <p
-          className="canvas-paragraph"
-          onClick={() => onElementClick(element)}
-          style={element.styles}
-        >
+        <p onClick={() => onElementClick(element)} style={element.styles}>
           {element.text}
         </p>
       );
     case "list":
       return (
-        <ul
-          className="canvas-list"
-          onClick={() => onElementClick(element)}
-          style={element.styles}
-        >
+        <ul onClick={() => onElementClick(element)} style={element.styles}>
           {element.items.map((item, index) => (
             <li key={index}>{item}</li>
           ))}
